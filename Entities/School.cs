@@ -14,6 +14,8 @@ namespace CoreSchool.Entities
 
         public string City { get; set; }
 
+        public SchoolTypes SchoolTypes { get; set; }
+
         //Constructor
         // public School(string name, int year)
         // {
@@ -23,6 +25,11 @@ namespace CoreSchool.Entities
 
         //Constructor
         public School(string name, int year) => (Name, CreationYear) = (name, year);
+
+        public override string ToString()
+        {
+            return $"Name: {Name}, Type: {SchoolTypes} \n Country: {Country}, City: {City}";
+        }
 
     }
 }
