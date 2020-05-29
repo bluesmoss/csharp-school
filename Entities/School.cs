@@ -26,9 +26,17 @@ namespace CoreSchool.Entities
         //Constructor
         public School(string name, int year) => (Name, CreationYear) = (name, year);
 
+        //Constructor
+        public School(string name, int year, SchoolTypes types, string country="", string city="") 
+        {
+            (Name, CreationYear) = (name, year);
+            Country = country;
+            City = city;
+        }
+
         public override string ToString()
         {
-            return $"Name: {Name}, Type: {SchoolTypes} \n Country: {Country}, City: {City}";
+            return $"Name: \"{Name}\", Type: {SchoolTypes} {System.Environment.NewLine} Country: {Country}, City: {City}";
         }
 
     }
