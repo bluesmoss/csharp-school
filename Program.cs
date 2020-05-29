@@ -7,36 +7,67 @@ namespace school
     {
         static void Main(string[] args)
         {
-            var school = new School("Platzi Academy", 2012, SchoolTypes.Secondary, city:"bogota");
+            var school = new School("Platzi Academy", 2012, SchoolTypes.Secondary, city: "bogota");
             Console.WriteLine(school);
 
             var courseArray = new Course[3];
-            
+
             courseArray[0] = new Course()
-                            {
-                                Name = "101",
-                            };
-            var course2 = new Course(){
+            {
+                Name = "101",
+            };
+            var course2 = new Course()
+            {
                 Name = "201",
             };
 
-            courseArray[1]  = course2;
+            courseArray[1] = course2;
 
             courseArray[2] = new Course
-                            {
-                                Name = "301",
-                            };
+            {
+                Name = "301",
+            };
             System.Console.WriteLine("============");
-            PrintCourses(courseArray);
+            PrintCoursesWhile(courseArray);
+            System.Console.WriteLine("----");
+            PrintCoursesDoWhile(courseArray);
+            System.Console.WriteLine("---");
+            PrintCoursesFor(courseArray);
+            System.Console.WriteLine("----");
+            PrintCoursesForEach(courseArray);
+
         }
 
-        private static void PrintCourses(Course[] courseArray)
+        private static void PrintCoursesWhile(Course[] courseArray)
         {
             int counter = 0;
             while (counter < courseArray.Length)
             {
                 System.Console.WriteLine($"Name {courseArray[counter].Name}, Id {courseArray[counter].UniqueId}");
                 counter++;
+            }
+        }
+        private static void PrintCoursesDoWhile(Course[] courseArray)
+        {
+            int counter = 0;
+            do
+            {
+                System.Console.WriteLine($"Name {courseArray[counter].Name}, Id {courseArray[counter].UniqueId}");
+                counter++;
+            } while (counter < courseArray.Length);
+        }
+        private static void PrintCoursesFor(Course[] courseArray)
+        {
+            for (int i = 0; i < courseArray.Length; i++)
+            {
+                System.Console.WriteLine($"Name {courseArray[i].Name}, Id {courseArray[i].UniqueId}");
+            }
+        }
+        private static void PrintCoursesForEach(Course[] courseArray)
+        {
+            foreach (var course in courseArray)
+            {
+                System.Console.WriteLine($"Name {course.Name}, Id {course.UniqueId}");
             }
         }
     }
