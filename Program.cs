@@ -1,5 +1,6 @@
 ﻿using System;
 using CoreSchool.Entities;
+using static System.Console;
 
 namespace school
 {
@@ -10,32 +11,31 @@ namespace school
             var school = new School("Platzi Academy", 2012, SchoolTypes.Secondary, city: "bogota");
             Console.WriteLine(school);
 
-            var courseArray = new Course[3];
-
-            courseArray[0] = new Course()
-            {
-                Name = "101",
+            // var courseArray = new Course[3]{
+            //     new Course() {Name = "101"}, new Course() {Name = "201"}, new Course() {Name = "301"}
+            // };
+            // Course[] courseArray = {
+            //     new Course() {Name = "101"}, new Course() {Name = "201"}, new Course() {Name = "301"}
+            // };
+            school.Courses = new Course[]{
+                new Course() {Name = "101"}, new Course() {Name = "201"}, new Course() {Name = "301"}
             };
-            var course2 = new Course()
-            {
-                Name = "201",
-            };
+            printSchoolCourses(school);
 
-            courseArray[1] = course2;
+        }
 
-            courseArray[2] = new Course
-            {
-                Name = "301",
-            };
-            System.Console.WriteLine("============");
-            PrintCoursesWhile(courseArray);
-            System.Console.WriteLine("----");
-            PrintCoursesDoWhile(courseArray);
-            System.Console.WriteLine("---");
-            PrintCoursesFor(courseArray);
-            System.Console.WriteLine("----");
-            PrintCoursesForEach(courseArray);
+        private static void printSchoolCourses(School school)
+        {
+            WriteLine("-----------------------------");
+            WriteLine("School's Courses");
+            WriteLine("-----------------------------");
 
+            if (school?.Courses !=  null){
+                foreach (var course in school.Courses)
+                {
+                    WriteLine($"Name {course.Name}, Id {course.UniqueId}");
+                }
+            }
         }
 
         private static void PrintCoursesWhile(Course[] courseArray)

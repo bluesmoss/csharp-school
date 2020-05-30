@@ -16,6 +16,8 @@ namespace CoreSchool.Entities
 
         public SchoolTypes SchoolTypes { get; set; }
 
+        public Course[] Courses { get; set; }
+
         //Constructor
         // public School(string name, int year)
         // {
