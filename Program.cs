@@ -27,12 +27,25 @@ namespace school
                 new Course() {Name = "401", Schedule = ScheduleType.Morning}, new Course() {Name = "501",  Schedule = ScheduleType.Morning}, new Course() {Name = "502",  Schedule = ScheduleType.Morning}
             };
 
-            otherCollection.Clear(); //Delete elements
+            //otherCollection.Clear(); //Delete elements
 
             school.Courses.AddRange(otherCollection);
-
+            
+            Course tmp = new Course(){Name = "101 Holidays", Schedule = ScheduleType.Evening};
+            school.Courses.Add(tmp);
+            printSchoolCourses(school);
+            //WriteLine($"Curso Hash: {tmp.GetHashCode()}");
+            //school.Courses.Remove(tmp);
+            Predicate<Course>myAlgorithm = PredicateName;
+            school.Courses.RemoveAll(myAlgorithm);
+            WriteLine("----------------");
             printSchoolCourses(school);
 
+        }
+
+        private static bool PredicateName(Course obj)
+        {
+            return obj.Name == "301";
         }
 
         private static void printSchoolCourses(School school)
