@@ -24,7 +24,7 @@ namespace school
             school.Courses.Add(  new Course {Name = "202", Schedule = ScheduleType.Afternoon});
 
             var otherCollection =  new List<Course>(){
-                new Course() {Name = "401", Schedule = ScheduleType.Morning}, new Course() {Name = "501",  Schedule = ScheduleType.Morning}, new Course() {Name = "502",  Schedule = ScheduleType.Morning}
+                new Course() {Name = "401", Schedule = ScheduleType.Morning}, new Course() {Name = "501",  Schedule = ScheduleType.Morning},  new Course() {Name = "501",  Schedule = ScheduleType.Evening}, new Course() {Name = "502",  Schedule = ScheduleType.Morning}
             };
 
             //otherCollection.Clear(); //Delete elements
@@ -39,14 +39,10 @@ namespace school
             school.Courses.RemoveAll(delegate(Course course){
                 return course.Name == "301";
             });
+            school.Courses.RemoveAll((course) => course.Name == "501" && course.Schedule == ScheduleType.Morning);
             WriteLine("----------------");
             printSchoolCourses(school);
 
-        }
-
-        private static bool PredicateName(Course obj)
-        {
-            return obj.Name == "301";
         }
 
         private static void printSchoolCourses(School school)
