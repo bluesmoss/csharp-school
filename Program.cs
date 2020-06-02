@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CoreSchool;
 using CoreSchool.Entities;
+using CoreSchool.Util;
 using static System.Console;
 
 namespace school
@@ -13,15 +14,15 @@ namespace school
 
             var engine  =new SchoolEngine();
             engine.Initialize();
+            Printer.WriteTitle("Welcome to the School");
+            Printer.Beep(10000,500, 10);
             printSchoolCourses(engine.School);
 
         }
 
         private static void printSchoolCourses(School school)
         {
-            WriteLine("-----------------------------");
-            WriteLine("School's Courses");
-            WriteLine("-----------------------------");
+            Printer.WriteTitle("School's Courses");
 
             if (school?.Courses !=  null){
                 foreach (var course in school.Courses)
