@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace CoreSchool.Entities
@@ -10,6 +11,7 @@ namespace CoreSchool.Entities
             set{ name = value.ToUpper();}
         }
 
+        public string UniqueId { get; set; } = Guid.NewGuid().ToString();
         public int CreationYear {get; set;}
 
         public string Country { get; set; }
