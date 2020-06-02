@@ -36,8 +36,9 @@ namespace school
             printSchoolCourses(school);
             //WriteLine($"Curso Hash: {tmp.GetHashCode()}");
             //school.Courses.Remove(tmp);
-            Predicate<Course>myAlgorithm = PredicateName;
-            school.Courses.RemoveAll(myAlgorithm);
+            school.Courses.RemoveAll(delegate(Course course){
+                return course.Name == "301";
+            });
             WriteLine("----------------");
             printSchoolCourses(school);
 
