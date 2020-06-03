@@ -25,7 +25,28 @@ namespace CoreSchool
 
         private void LoadEvaluations()
         {
-            //throw new NotImplementedException();
+            foreach (var course in School.Courses)
+            {
+                foreach (var subject in course.Subject)
+                {
+                    foreach (var student in course.Student)
+                    {
+                        var rnd = new Random(System.Environment.TickCount);
+                        var counter = 0;
+                        while ( counter < 5)
+                        {
+                            var evaluation = new Evaluation
+                                {
+                                    Subject = subject,
+                                    Name = $"{subject.Name} Evaluation #{counter + 1}",
+                                    Note = (float)(5 * rnd.NextDouble()),
+                                    Student = student
+                                };
+                            student.Evaluation.Add(evaluation);
+                        }
+                    }
+                }
+            }
         }
 
         private void LoadSubjects()
@@ -36,6 +57,7 @@ namespace CoreSchool
                     new Subject{Name = "Mathematics"},
                     new Subject{Name = "Phisics"},
                     new Subject{Name = "Spanish"},
+                    new Subject{Name = "Arts"},
                     new Subject{Name = "Natural Science"}
                 };
                 course.Subject = SubjectList;
