@@ -18,7 +18,7 @@ namespace CoreSchool.Entities
 
         public string City { get; set; }
 
-        public SchoolTypes SchoolTypes { get; set; }
+        public SchoolType SchoolTypes { get; set; }
 
         public List<Course> Courses { get; set; }
 
@@ -33,7 +33,7 @@ namespace CoreSchool.Entities
         public School(string name, int year) => (Name, CreationYear) = (name, year);
 
         //Constructor
-        public School(string name, int year, SchoolTypes types, string country="", string city="") 
+        public School(string name, int year, SchoolType types, string country="", string city="") 
         {
             (Name, CreationYear) = (name, year);
             Country = country;

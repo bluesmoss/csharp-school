@@ -16,7 +16,7 @@ namespace CoreSchool
 
         public void Initialize()
         {
-            School = new School("Platzi Academy", 2012, SchoolTypes.Secondary, city: "bogota");
+            School = new School("Platzi Academy", 2012, SchoolType.Secondary, city: "bogota");
 
             LoadCourses();
             LoadSubjects();
