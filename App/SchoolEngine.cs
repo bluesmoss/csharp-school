@@ -20,10 +20,10 @@ namespace CoreSchool
 
             LoadCourses();
             LoadSubjects();
-            LoadEvaluations();
+            LoadEvaluations(5);
         }
 
-        private void LoadEvaluations()
+        private void LoadEvaluations(int total)
         {
             foreach (var course in School.Courses)
             {
@@ -33,7 +33,7 @@ namespace CoreSchool
                     {
                         var rnd = new Random(System.Environment.TickCount);
                         var counter = 0;
-                        while ( counter < 5)
+                        while ( counter < total)
                         {
                             var evaluation = new Evaluation
                                 {
@@ -43,6 +43,7 @@ namespace CoreSchool
                                     Student = student
                                 };
                             student.Evaluation.Add(evaluation);
+                            counter++;
                         }
                     }
                 }
