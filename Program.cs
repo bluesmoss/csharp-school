@@ -20,6 +20,7 @@ namespace school
             printSchoolCourses(engine.School);
 
             var objectList = engine.GetSchoolObjects();
+
            // engine.School.CleanPlace();
 
         }

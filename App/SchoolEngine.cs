@@ -23,7 +23,7 @@ namespace CoreSchool
             LoadEvaluations(5);
         }
 
-        public List<BaseSchoolObject> GetSchoolObjects(
+        public IReadOnlyList<BaseSchoolObject> GetSchoolObjects(
             bool getEvaluation = true,
             bool getStudent = true,
             bool getSubject = true,
@@ -32,7 +32,7 @@ namespace CoreSchool
             {
                 return GetSchoolObjects(out int dummy, out dummy, out dummy, out dummy);
             }
-        public List<BaseSchoolObject> GetSchoolObjects(
+        public IReadOnlyList<BaseSchoolObject> GetSchoolObjects(
             out int countEvaluation,
             out int countStudent,
             out int countSubject,
@@ -48,7 +48,7 @@ namespace CoreSchool
             objList.Add(School);
             if (getCourses)
             {
-                objList.AddRange(School.Courses); 
+                objList.AddRange(School.Courses);
                 countCourses = School.Courses.Count;
             }
 
@@ -75,7 +75,7 @@ namespace CoreSchool
                     }
                 }
             }
-            return objList;
+            return objList.AsReadOnly();
         }
 
         #region Load's Methods
@@ -150,6 +150,6 @@ namespace CoreSchool
                                 select new Student{ Name = $"{n1} {n2} {a1}" };
 
             return StudentList.OrderBy((student) => student.UniqueId ).Take(total).ToList();
-        }        
+        }
     }
 }
