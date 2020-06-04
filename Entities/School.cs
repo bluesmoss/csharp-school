@@ -49,7 +49,9 @@ namespace CoreSchool.Entities
             {
                 course.CleanPlace();
             }
-            System.Console.WriteLine($"School: {Name} cleaned");
+
+            Printer.WriteTitle($"School: {Name} cleaned");
+            Printer.Beep(500, 500, 3);
         }
 
     }

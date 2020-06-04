@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CoreSchool;
 using CoreSchool.Entities;
 using CoreSchool.Util;
@@ -19,6 +20,11 @@ namespace school
             printSchoolCourses(engine.School);
 
             var objectList = engine.GetSchoolObjects();
+
+            var listIPlace = from obj in objectList
+                            where obj is IPlace
+                            select (IPlace)obj;
+           // engine.School.CleanPlace();
 
         }
 
