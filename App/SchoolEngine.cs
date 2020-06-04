@@ -22,22 +22,40 @@ namespace CoreSchool
             LoadSubjects();
             LoadEvaluations(5);
         }
-        public List<BaseSchoolObject> GetSchoolObjects()
+        public (List<BaseSchoolObject>, int countEvaluation) GetSchoolObjects(
+            bool getEvaluation = true,
+            bool getStudent = true,
+            bool getSubject = true,
+            bool getCourses = true
+            )
         {
+            int countEvaluation = 0;
             var objList = new List<BaseSchoolObject> ();
             objList.Add(School);
+            if (getCourses)
             objList.AddRange(School.Courses);
             foreach (var course in School.Courses)
             {
-                objList.AddRange(course.Subject);
-                objList.AddRange(course.Student);
-
-                foreach (var student in course.Student)
+                if (getSubject)
                 {
-                    objList.AddRange(student.Evaluation);
+                    objList.AddRange(course.Subject);
+                }
+
+                if (getStudent)
+                {
+                    objList.AddRange(course.Student);
+                }
+
+                if (getEvaluation)
+                {
+                    foreach (var student in course.Student)
+                    {
+                        objList.AddRange(student.Evaluation);
+                        countEvaluation += student.Evaluation.Count;
+                    }
                 }
             }
-            return objList;
+            return (objList, countEvaluation);
         }
 
         #region Load's Methods

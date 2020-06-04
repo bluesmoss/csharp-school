@@ -19,11 +19,7 @@ namespace school
             //Printer.Beep(10000,500, 10);
             printSchoolCourses(engine.School);
 
-            var objectList = engine.GetSchoolObjects();
-
-            var listIPlace = from obj in objectList
-                            where obj is IPlace
-                            select (IPlace)obj;
+            var objectList = engine.GetSchoolObjects(true, false, false, false);
            // engine.School.CleanPlace();
 
         }
