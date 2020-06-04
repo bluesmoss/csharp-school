@@ -18,6 +18,8 @@ namespace school
             //Printer.Beep(10000,500, 10);
             printSchoolCourses(engine.School);
 
+            var objectList = engine.GetSchoolObjects();
+
         }
 
         private static void printSchoolCourses(School school)
