@@ -52,13 +52,11 @@ namespace school
             WriteLine($"Student: {evaluation.GetType()}");
 
             ob = evaluation;
-            Printer.WriteTitle("Evaluation Object");
-            WriteLine($"Student: {ob.Name}");
-            WriteLine($"Student: {ob.UniqueId}");
-            WriteLine($"Student: {ob.GetType()}");
 
-            testStudent = (Student)(BaseSchoolObject)evaluation;
-
+            if (ob is Student) {
+                Student recoveredStudent = (Student)ob;
+            }
+            Student recoveredStudent2 = ob as Student;
         }
 
         private static void printSchoolCourses(School school)
