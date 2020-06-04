@@ -22,6 +22,16 @@ namespace CoreSchool
             LoadSubjects();
             LoadEvaluations(5);
         }
+
+        public List<BaseSchoolObject> GetSchoolObjects(
+            bool getEvaluation = true,
+            bool getStudent = true,
+            bool getSubject = true,
+            bool getCourses = true
+            )
+            {
+                return GetSchoolObjects(out int dummy, out dummy, out doummy, out dummy);
+            }
         public List<BaseSchoolObject> GetSchoolObjects(
             out int countEvaluation,
             out int countStudent,
