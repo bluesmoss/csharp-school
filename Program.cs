@@ -19,7 +19,12 @@ namespace school
             //Printer.Beep(10000,500, 10);
             printSchoolCourses(engine.School);
 
-            var objectList = engine.GetSchoolObjects(true, false, false, false);
+            var objectList = engine.GetSchoolObjects(
+                out int countEvaluation,
+                out int countStudent,
+                out int countSubject,
+                out int countCourses
+            );
            // engine.School.CleanPlace();
 
         }
