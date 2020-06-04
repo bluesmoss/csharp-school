@@ -22,7 +22,25 @@ namespace CoreSchool
             LoadSubjects();
             LoadEvaluations(5);
         }
+        public List<BaseSchoolObject> GetSchoolObjects()
+        {
+            var objList = new List<BaseSchoolObject> ();
+            objList.Add(School);
+            objList.AddRange(School.Courses);
+            foreach (var course in School.Courses)
+            {
+                objList.AddRange(course.Subject);
+                objList.AddRange(course.Student);
 
+                foreach (var student in course.Student)
+                {
+                    objList.AddRange(student.Evaluation);
+                }
+            }
+            return objList;
+        }
+
+        #region Load's Methods
         private void LoadEvaluations(int total)
         {
             foreach (var course in School.Courses)
@@ -50,24 +68,6 @@ namespace CoreSchool
             }
         }
 
-        public List<BaseSchoolObject> GetSchoolObjects()
-        {
-            var objList = new List<BaseSchoolObject> ();
-            objList.Add(School);
-            objList.AddRange(School.Courses);
-            foreach (var course in School.Courses)
-            {
-                objList.AddRange(course.Subject);
-                objList.AddRange(course.Student);
-
-                foreach (var student in course.Student)
-                {
-                    objList.AddRange(student.Evaluation);
-                }
-            }
-            return objList;
-        }
-
         private void LoadSubjects()
         {
             foreach(var course in School.Courses)
@@ -82,21 +82,6 @@ namespace CoreSchool
                 course.Subject = SubjectList;
             }
         }
-
-        private List<Student> createRandomStudents(int total)
-        {
-            string[] firstName = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
-            string[] lastName = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
-            string[] secondName = { "Freddy", "Anabel", "Rick", "Morty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
-
-            var StudentList =   from n1 in firstName
-                                from n2 in secondName
-                                from a1 in lastName
-                                select new Student{ Name = $"{n1} {n2} {a1}" };
-
-            return StudentList.OrderBy((student) => student.UniqueId ).Take(total).ToList();
-        }
-
         private void LoadCourses()
         {
             School.Courses = new List<Course>(){
@@ -114,5 +99,19 @@ namespace CoreSchool
                 course.Student = createRandomStudents(totalRandom);
             }
         }
+        #endregion
+        private List<Student> createRandomStudents(int total)
+        {
+            string[] firstName = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
+            string[] lastName = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
+            string[] secondName = { "Freddy", "Anabel", "Rick", "Morty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
+
+            var StudentList =   from n1 in firstName
+                                from n2 in secondName
+                                from a1 in lastName
+                                select new Student{ Name = $"{n1} {n2} {a1}" };
+
+            return StudentList.OrderBy((student) => student.UniqueId ).Take(total).ToList();
+        }        
     }
 }
