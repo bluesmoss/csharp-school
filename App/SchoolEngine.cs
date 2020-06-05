@@ -23,6 +23,14 @@ namespace CoreSchool
             LoadEvaluations(5);
         }
 
+        public Dictionary<string, IEnumerable<BaseSchoolObject>> getObjectDictionary()
+        {
+            var dictionary = new Dictionary<string,IEnumerable<BaseSchoolObject>>();
+            dictionary.Add("School", new []{School});
+            dictionary.Add("Courses", School.Courses.Cast<BaseSchoolObject>());
+            return dictionary;
+        }
+
         public IReadOnlyList<BaseSchoolObject> GetSchoolObjects(
             bool getEvaluation = true,
             bool getStudent = true,

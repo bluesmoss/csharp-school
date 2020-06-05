@@ -40,6 +40,7 @@ namespace school
             WriteLine(dic["Luna"]);
             dic["Luna"] = "Main charcater";
             WriteLine(dic["Luna"]);
+
         }
 
         private static void printSchoolCourses(School school)
