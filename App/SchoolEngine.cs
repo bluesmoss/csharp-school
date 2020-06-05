@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreSchool.Entities;
+using CoreSchool.Util;
 
 namespace CoreSchool
 {
@@ -23,12 +24,39 @@ namespace CoreSchool
             LoadEvaluations(5);
         }
 
+        public void PrintDictionary(Dictionary<Constant, IEnumerable<BaseSchoolObject>> dic)
+        {
+            foreach (var obj in dic)
+            {
+                Printer.WriteTitle(obj.Key.ToString());
+                foreach (var value in obj.Value)
+                {
+                    System.Console.WriteLine(value);
+                }
+            }
+        }
         public Dictionary<Constant, IEnumerable<BaseSchoolObject>> getObjectDictionary()
         {
 
             var dictionary = new Dictionary<Constant,IEnumerable<BaseSchoolObject>>();
             dictionary.Add(Constant.School, new []{School});
             dictionary.Add(Constant.Courses, School.Courses.Cast<BaseSchoolObject>());
+            var tmplist = new List<Evaluation>();
+            var tmplistSubject = new List<Subject>();
+            var tmplistStudent = new List<Student>();
+            foreach (var course in School.Courses)
+            {
+                tmplistStudent.AddRange(course.Student);
+                tmplistSubject.AddRange(course.Subject);
+
+                foreach (var student in course.Student)
+                {
+                    tmplist.AddRange(student.Evaluation);
+                }
+            }
+            dictionary.Add(Constant.Student, tmplistStudent.Cast<BaseSchoolObject>());
+            dictionary.Add(Constant.Subject, tmplistSubject.Cast<BaseSchoolObject>());
+            dictionary.Add(Constant.Evaluation, tmplist.Cast<BaseSchoolObject>());
             return dictionary;
         }
 
