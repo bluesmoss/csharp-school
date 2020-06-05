@@ -23,12 +23,12 @@ namespace CoreSchool
             LoadEvaluations(5);
         }
 
-        public Dictionary<string, IEnumerable<BaseSchoolObject>> getObjectDictionary()
+        public Dictionary<Constant, IEnumerable<BaseSchoolObject>> getObjectDictionary()
         {
 
-            var dictionary = new Dictionary<string,IEnumerable<BaseSchoolObject>>();
-            dictionary.Add(Constant.SCHOOL, new []{School});
-            dictionary.Add(Constant.COURSES, School.Courses.Cast<BaseSchoolObject>());
+            var dictionary = new Dictionary<Constant,IEnumerable<BaseSchoolObject>>();
+            dictionary.Add(Constant.School, new []{School});
+            dictionary.Add(Constant.Courses, School.Courses.Cast<BaseSchoolObject>());
             return dictionary;
         }
 
