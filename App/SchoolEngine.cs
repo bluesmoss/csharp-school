@@ -25,9 +25,10 @@ namespace CoreSchool
 
         public Dictionary<string, IEnumerable<BaseSchoolObject>> getObjectDictionary()
         {
+
             var dictionary = new Dictionary<string,IEnumerable<BaseSchoolObject>>();
-            dictionary.Add("School", new []{School});
-            dictionary.Add("Courses", School.Courses.Cast<BaseSchoolObject>());
+            dictionary.Add(Constant.SCHOOL, new []{School});
+            dictionary.Add(Constant.COURSES, School.Courses.Cast<BaseSchoolObject>());
             return dictionary;
         }
 
