@@ -12,6 +12,8 @@ namespace school
     {
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.ProcessExit += EventAction;
+            AppDomain.CurrentDomain.ProcessExit += (o, a) => Printer.Beep(100, 1000, 1);
 
             var engine  =new SchoolEngine();
             engine.Initialize();
@@ -43,6 +45,13 @@ namespace school
 
             var dictmp = engine.getObjectDictionary();
             engine.PrintDictionary(dictmp, true);
+        }
+
+        private static void EventAction(object sender, EventArgs e)
+        {
+            Printer.WriteTitle("Exit");
+            Printer.Beep(3000, 1000, 3);
+            Printer.WriteTitle("Exit Completed");
         }
 
         private static void printSchoolCourses(School school)
