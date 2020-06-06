@@ -144,13 +144,13 @@ namespace CoreSchool
         #region Load's Methods
         private void LoadEvaluations(int total)
         {
+            var rnd = new Random();
             foreach (var course in School.Courses)
             {
                 foreach (var subject in course.Subject)
                 {
                     foreach (var student in course.Student)
                     {
-                        var rnd = new Random(System.Environment.TickCount);
                         var counter = 0;
                         while ( counter < total)
                         {
@@ -159,7 +159,7 @@ namespace CoreSchool
                                     Subject = subject,
                                     Name = $"{subject.Name} Evaluation #{counter + 1}",
                                     //Note = (float)Math.Round(5 * rnd.NextDouble(),2),
-                                    Note = MathF.Round((float)(5 * rnd.NextDouble()),2),
+                                    Note = MathF.Round(5 * (float)rnd.NextDouble(),2),
                                     Student = student
                                 };
                             student.Evaluation.Add(evaluation);
