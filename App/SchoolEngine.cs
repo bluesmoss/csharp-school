@@ -24,14 +24,40 @@ namespace CoreSchool
             LoadEvaluations(5);
         }
 
-        public void PrintDictionary(Dictionary<Constant, IEnumerable<BaseSchoolObject>> dic)
+        public void PrintDictionary(Dictionary<Constant, IEnumerable<BaseSchoolObject>> dic,
+            bool printEval = false
+        )
         {
             foreach (var obj in dic)
             {
                 Printer.WriteTitle(obj.Key.ToString());
                 foreach (var value in obj.Value)
                 {
-                    System.Console.WriteLine(value);
+                    switch (obj.Key)
+                    {
+                        case Constant.Evaluation:
+                            if (printEval){
+                                System.Console.WriteLine(value);
+                            }
+                        break;
+                        case Constant.School:
+                            System.Console.WriteLine($"School: {value}");
+                        break;
+                        case Constant.Student:
+                            System.Console.WriteLine($"Student: {value.Name}");
+                        break;
+                        case Constant.Courses:
+                        var courseTmp = value as Course;
+                        if (courseTmp !=  null)
+                        {
+                            int count = courseTmp.Student.Count;
+                            System.Console.WriteLine($"Course: {value.Name} Total: {count}");
+                        }
+                        break;
+                        default:
+                            System.Console.WriteLine(value);
+                        break;
+                    }
                 }
             }
         }
@@ -132,7 +158,8 @@ namespace CoreSchool
                                 {
                                     Subject = subject,
                                     Name = $"{subject.Name} Evaluation #{counter + 1}",
-                                    Note = (float)(5 * rnd.NextDouble()),
+                                    //Note = (float)Math.Round(5 * rnd.NextDouble(),2),
+                                    Note = MathF.Round((float)(5 * rnd.NextDouble()),2),
                                     Student = student
                                 };
                             student.Evaluation.Add(evaluation);

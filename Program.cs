@@ -42,7 +42,7 @@ namespace school
             WriteLine(dic["Luna"]);
 
             var dictmp = engine.getObjectDictionary();
-            engine.PrintDictionary(dictmp);
+            engine.PrintDictionary(dictmp, true);
         }
 
         private static void printSchoolCourses(School school)
